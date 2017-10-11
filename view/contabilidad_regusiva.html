@@ -114,14 +114,20 @@
                      <thead>
                         <tr>
                            <th class="text-right">Base imponible</th>
-                           <th class="text-right">Tipo</th>
-                           <th class="text-right">Cuota</th>
+                           <th class="text-right">IVA</th>
+                           <th class="text-right">R.E.</th>
+                           <th class="text-right">Cuota IVA</th>
+                           <th class="text-right">Cuota RE</th>
+                           <th class="text-right">Cuota Total</th>
                         </tr>
                      </thead>
                      {loop="$fsc->desglosar_iva_ventas()"}
                      <tr>
                         <td class="text-right">{$fsc->show_precio($value['neto'])}</td>
                         <td class="text-right">{$fsc->show_numero($value['iva'])} %</td>
+                        <td class="text-right">{$fsc->show_numero($value['recargo'])} %</td>
+                        <td class="text-right">{$fsc->show_precio($value['totaliva'])}</td>
+                        <td class="text-right">{$fsc->show_precio($value['totalrecargo'])}</td>
                         <td class="text-right">
                            <!-- {$devengado=$devengado+$value['totaliva']+$value['totalrecargo']} -->
                            {$fsc->show_precio($value['totaliva']+$value['totalrecargo'])}
@@ -129,7 +135,7 @@
                      </tr>
                      {/loop}
                      <tr class="info">
-                        <td colspan="3" class="text-right">
+                        <td colspan="6" class="text-right">
                            <b>{$fsc->show_precio($devengado)}</b>
                         </td>
                      </tr>
@@ -319,7 +325,9 @@
                            <th>{#FS_IVA#}</th>
                            <th>R.E.</th>
                            <th class="text-right">Base</th>
-                           <th class="text-right">Cálculo</th>
+                           <th class="text-right">Cálculo IVA</th>
+                           <th class="text-right">Cálculo RE</th>
+                           <th class="text-right">Cálculo Total</th>
                         </tr>
                      </thead>
                      {loop="$fsc->desglosar_iva_ventas()"}
@@ -327,11 +335,13 @@
                         <td>{$fsc->show_numero($value['iva'])} %</td>
                         <td>{$fsc->show_numero($value['recargo'])} %</td>
                         <td class="text-right">{$fsc->show_precio($value['neto'])}</td>
+                        <td class="text-right">{$fsc->show_precio($value['totaliva'])}</td>
+                        <td class="text-right">{$fsc->show_precio($value['totalrecargo'])}</td>
                         <td class="text-right">{$fsc->show_precio($value['totaliva']+$value['totalrecargo'])}</td>
                      </tr>
                      {else}
                      <tr class="warning">
-                        <td colspan="4">Sin resultados.</td>
+                        <td colspan="6">Sin resultados.</td>
                      </tr>
                      {/loop}
                   </table>
